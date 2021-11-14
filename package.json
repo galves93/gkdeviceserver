@@ -1,0 +1,31 @@
+{
+  "name": "gkdeviceserver",
+  "version": "1.0.0",
+  "description": "a tcc project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/galves93/gkdeviceserver.git"
+  },
+  "author": "gustavo alves",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/galves93/gkdeviceserver/issues"
+  },
+  "homepage": "https://github.com/galves93/gkdeviceserver#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "http-status": "^1.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "nodemon": "^2.0.15",
+    "sequelize": "^6.9.0"
+  }
+}
