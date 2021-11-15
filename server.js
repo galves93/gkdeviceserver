@@ -4,6 +4,8 @@ var dotenv = require("dotenv");
 var bodyParser = require("body-parser");
 var compresion = require("compression");
 
+dotenv.config();
+
 app.use(compresion());
 
 app.get("", function (req, res) {
@@ -16,13 +18,13 @@ app.disable('x-powered-by');
     const database = require('./app/config/db.config.js');
 
     try {
-        await database.Sequilize.sync();
+        await database.Sequelize.sync();
     } catch (error) {
         console.log(error);
     }
 })();
 
-require('./app/routes/usuario.route.js')(app);
+require("./app/routes/usuario.routes.js")(app);
 
 var server = app.listen(process.env.SERVER_PORT, function(){
 
