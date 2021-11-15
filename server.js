@@ -26,7 +26,7 @@ app.disable('x-powered-by');
 
 require("./app/routes/usuario.routes.js")(app);
 
-var server = app.listen(process.env.SERVER_PORT, function(){
+var server = app.listen(process.env.PORT || process.env.SERVER_PORT, function(){
 
     var host = server.address().address;
     var port = server.address().port;
