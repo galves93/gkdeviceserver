@@ -3,6 +3,7 @@ var app = express();
 var dotenv = require("dotenv");
 var bodyParser = require("body-parser");
 var compresion = require("compression");
+var {Pool} = require('pg');
 
 dotenv.config();
 

@@ -5,17 +5,22 @@ const sequelize = new Sequelize(
     process.env.DB_USERNAME,
     process.env.DB_PASSWORD,
     {
+        url: process.env.DATABASE_URL,
         host: process.env.DB_HOST,
-        use_env_variable: process.env.DATABASE_URL,
         dialect: "postgres",
         timestamps: false,
-        logging: process.env.DB_ENV == "prod" ? true : false,
+        // logging: process.env.DB_ENV == "prod" ? true : false,
         port: process.env.DB_PORT,
         define: {
             timestamps: false,
             freezeTableName: true
         },
-
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false
+            }
+        },
         pool: {
             max: 5,
             min: 0,
