@@ -11,15 +11,16 @@ const bcrypt = require("bcryptjs")
 
 
 exports.setUsuario = async (req, res) => {
-    const {apiKey} = req.headers;
+    // const {apiKey} = req.headers;
 
-    if(!apiKey){
-        return res.status(HTTPStatus.UNAUTHORIZED).json({message: "Não Autorizado!", data: ""});
-    }
+    // if(!apiKey){
+    //     return res.status(HTTPStatus.UNAUTHORIZED).json({message: "Não Autorizado!", data: ""});
+    // }
 
-    if (!_.isEqual(apikey, "b3ddffe1825da7ab0d651686769fdfe6")) {        
-        return res.status(HTTPStatus.UNAUTHORIZED).json({message: "Não Autorizado!", data: ""});
-    }
+    // if (!_.isEqual(apikey, "b3ddffe1825da7ab0d651686769fdfe6")) {        
+    //     return res.status(HTTPStatus.UNAUTHORIZED).json({message: "Não Autorizado!", data: ""});
+    // }
+
 
     let userDb = await getUsuarioDB(req.body.usuario);
 
@@ -64,15 +65,15 @@ exports.login = async(req, res) => {
     if (!usuario) {        
         return res.status(HTTPStatus.UNAUTHORIZED).json({ message: "Usuário e/ou senha Inválidos!", data: {} });
     }
-    // const match = await bcrypt.compare(senha, usuario.senha);
+    const match = await bcrypt.compare(senha, usuario.senha);
 
-    // if(!match){
-    //     return res.status(HTTPStatus.UNAUTHORIZED).json({ message: "Usuário e/ou senha Inválidos!", data: {} });
-    // }
+    if(!match){
+        return res.status(HTTPStatus.UNAUTHORIZED).json({ message: "Usuário e/ou senha Inválidos!", data: {} });
+    }
 
-    let token = await generateToken(usuarioDB.id, usuarioDB.nome, usuarioDB.cpf, req.headers.senha);
+    // let token = await generateToken(usuarioDB.id, usuarioDB.nome, usuarioDB.cpf, req.headers.senha);
 
-    res.header("Authorization", 'Bearer ' + token);
+    // res.header("Authorization", 'Bearer ' + token);
 
     let retorno = {
         message: "", 
@@ -151,17 +152,17 @@ getUsuarioLogin = async (idusuario, senha) => {
 /**
  *  GERA UM NOVO TOKEN JWT
  */
- generateToken = async (idusuario, nomeusuario, cpf, senha) => {
+//  generateToken = async (idusuario, nomeusuario, cpf, senha) => {
 
-    const token = jwt.sign({
-      id: idusuario,
-      name: nomeusuario,
-      senha: senha
-    },
-      process.env.TOKEN_SECRET, {
-      expiresIn: process.env.TOKEN_EXPIRES_IN
-    }
-    );
+//     const token = jwt.sign({
+//       id: idusuario,
+//       name: nomeusuario,
+//       senha: senha
+//     },
+//       process.env.TOKEN_SECRET, {
+//       expiresIn: process.env.TOKEN_EXPIRES_IN
+//     }
+//     );
   
-    return token;
-  };
+//     return token;
+//   };
